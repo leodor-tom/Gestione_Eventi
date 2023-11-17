@@ -27,18 +27,26 @@ public class ExceptionsHandler {
                     .map(DefaultMessageSourceResolvable::getDefaultMessage)
                     .toList();
             return new ErrorsResponseListDTO(e.getMessage(), new Date(), new ArrayList<>());
-        }else {
+        } else {
             return new ErrorsResponseListDTO(e.getMessage(), new Date(), new ArrayList<>());
         }
     }
+
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ErrorResponseDTO handleAccessDenied(AccessDeniedException e){return  new ErrorResponseDTO(e.getMessage(), new Date());}
+    public ErrorResponseDTO handleAccessDenied(AccessDeniedException e) {
+        return new ErrorResponseDTO(e.getMessage(), new Date());
+    }
 
     @ExceptionHandler(UnauthorizedException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ErrorResponseDTO handleUnauthorized(UnauthorizedException e){return new ErrorResponseDTO(e.getMessage(), new Date());}
+    public ErrorResponseDTO handleUnauthorized(UnauthorizedException e) {
+        return new ErrorResponseDTO(e.getMessage(), new Date());
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponseDTO handleGenericError(Exception e){ return new ErrorResponseDTO("Our bad! we will provide as soon as possible", new Date())}
+    public ErrorResponseDTO handleGenericError(Exception e) {
+        return new ErrorResponseDTO("Our bad! we will provide as soon as possible", new Date());
+    }
 }
