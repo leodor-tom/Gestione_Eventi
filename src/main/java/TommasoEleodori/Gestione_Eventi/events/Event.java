@@ -22,7 +22,9 @@ public class Event {
     private LocalDate date;
     private String venue;
     private String poster;
-
+    @Column(length = 500)
+    private String description;
+    private int seats;
     @ManyToMany
     @JoinTable(
             name = "user_event",
